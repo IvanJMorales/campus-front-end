@@ -1,0 +1,13 @@
+.navbar {
+    background-color: steelblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 30px;
+}
+
+
