@@ -12,7 +12,7 @@ function AllCampusesView(props) {
     // If there is at least one campus, render All Campuses view
     return (
         <div>
-            <div>ALL CAMPUS VIEW</div>
+            <h1>All Campuses</h1>
             {props.allCampuses.map((campus) => (
                 <div className="list-container" key={campus.id}>
                     <Link to={`/campus/${campus.id}`}>

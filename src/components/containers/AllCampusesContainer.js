@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAllCampusesThunk } from '../../store/thunks';
 import AllCampusesView from '../views/AllCampusesView';
 import { Component } from "react";
+import Header from './Header';
 
 class AllCampusesContainer extends Component {
     // Get all campuses data from back-end database
@@ -15,6 +16,7 @@ class AllCampusesContainer extends Component {
     render() {
       return (
         <div>
+          <Header />
           <AllCampusesView
             allCampuses={this.props.allCampuses}
           />
