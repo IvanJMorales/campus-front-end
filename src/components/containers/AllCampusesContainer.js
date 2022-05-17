@@ -23,7 +23,7 @@ class AllCampusesContainer extends Component {
         </div>
       );
     }
-  }
+}
   
   // 1. The "mapState" argument specifies the data from Redux Store that the component needs.
   // The "mapState" is called when the Store State changes, and it returns a data object of "allCampuses".
