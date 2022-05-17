@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "../../css/AllCampusesView.css";
 
 function AllCampusesView(props) {
     // If there is no campus, display a message.
@@ -17,7 +18,7 @@ function AllCampusesView(props) {
             </Link>
 
             {props.allCampuses.map((campus) => (
-                <div key={campus.id}>
+                <div className="list-container" key={campus.id}>
                     <Link to={`/campus/${campus.id}`}>
                         <h2>{campus.name}</h2>
                     </Link>
