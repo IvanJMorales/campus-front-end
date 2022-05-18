@@ -15,7 +15,7 @@ function AllCampusesView(props) {
             <h1>All Campuses</h1>
             {props.allCampuses.map((campus) => (
                 <div className="list-container" key={campus.id}>
-                    <Link to={`/campus/${campus.id}`}>
+                    <Link to={`/campuses/${campus.id}`}>
                         <h2>{campus.name}</h2>
                     </Link>
 

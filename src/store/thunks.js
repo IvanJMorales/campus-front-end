@@ -24,7 +24,7 @@ export const fetchAllCampusesThunk = () => async (dispatch) => {  // The THUNK
 export const fetchCampusThunk = (id) => async (dispatch) => {  // The THUNK
   try {
     // API "get" call to get a student data (based on "id")from database
-    let res = await axios.get(`/api/campuses/${id}`);  
+    let res = await axios.get(`http://localhost:5000/campuses/${id}`);
     dispatch(ac.fetchCampus(res.data));
   } catch(err) {
     console.error(err);
