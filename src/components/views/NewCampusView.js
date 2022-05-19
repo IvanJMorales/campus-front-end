@@ -37,18 +37,8 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewCampusView = (props) => {
+    const {handleChange, handleSubmit } = props;
     const classes = useStyles();
-    const student = useSelector(state => state.student);
-
-
-
-    const handleChange = (e) => {
-        console.log("changed")
-    }
-
-    const handleSubmit = (e) => {
-        addStudent(student)
-    }
 
   // Render a New Student view with an input form
   return (
@@ -78,7 +68,7 @@ const NewCampusView = (props) => {
             <br/>
             <br/>
 
-            <Button onClick={() => addStudent(student)} variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>
             <br/>

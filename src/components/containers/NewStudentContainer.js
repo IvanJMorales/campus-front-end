@@ -30,7 +30,7 @@ class NewStudentContainer extends Component {
   // Capture input data when it is entered
   handleChange = event => {
     this.setState({
-      [event.target.name]: event.target.firstname
+      [event.target.name]: event.target.value
     });
   }
 
@@ -39,7 +39,6 @@ class NewStudentContainer extends Component {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
     let student = {
-        id: this.state.id,
         firstname: this.state.firstname,
         lastname: this.state.lastname,
         campusId: this.state.campusId
@@ -67,7 +66,7 @@ class NewStudentContainer extends Component {
   render() {
     // Redirect to new student's page after submit
     if(this.state.redirect) {
-      return (<Redirect to={`/students/`}/>)
+      return (<Redirect to={`/students/${this.state.redirectId}`}/>)
     }
 
     // Display the input form via the corresponding View component
