@@ -6,6 +6,8 @@ import AllCampusesContainer from './components/containers/AllCampusesContainer'
 import AllStudentsContainer from './components/containers/AllStudentsContainer'
 import SingleCampusContainer from './components/containers/SingleCampusContainer'
 import SingleStudentContainer from './components/containers/SingleStudentContainer';
+import NewCampusContainer from './components/containers/NewCampusContainer';
+import NewStudentContainer from './components/containers/NewStudentContainer';
 
 const App = () => {
   return (
@@ -13,9 +15,11 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePageContainer} />
         <Route exact path="/campuses" component={AllCampusesContainer} />
-        <Route exact path="/campuses/:id" component={SingleCampusContainer} />
         <Route exact path="/students" component={AllStudentsContainer} />
+        <Route exact path="/campuses/:id" component={SingleCampusContainer} />
         <Route exact path="/students/:id" component={SingleStudentContainer} />
+        <Route exact path="/newcampus" component={NewCampusContainer} />
+        <Route exact path="/newstudent" component={NewStudentContainer} />
       </Switch>        
     </div>
   );

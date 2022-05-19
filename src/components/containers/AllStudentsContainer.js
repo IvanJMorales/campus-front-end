@@ -1,9 +1,13 @@
+/*==================================================
+AllStudentsContainer.js
+The Container component is responsible for stateful logic and data fetching, and
+passes data (if any) as props to the corresponding View component.
+If needed, it also defines the component's "connect" function.
+================================================== */
 import Header from './Header';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-    useHistory
-} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { 
   fetchAllStudentsThunk,
@@ -15,7 +19,6 @@ import AllStudentsView from '../views/AllStudentsView';
 class AllStudentsContainer extends Component {
   // Get all students data from back-end database
   componentDidMount() {
-    console.log(this.props)
     this.props.fetchAllStudents();
   }
 
@@ -53,4 +56,4 @@ const mapDispatch = (dispatch) => {
 // Export store-connected container by default
 // AllStudentsContainer uses "connect" function to connect to Redux Store and to read values from the Store 
 // (and re-read the values when the Store State updates).
-export default connect(mapState, mapDispatch)(AllStudentsContainer);
+export default withRouter(connect(mapState, mapDispatch)(AllStudentsContainer));

@@ -24,7 +24,7 @@ function AllCampusesView(props) {
                     <p>{campus.description}</p>
                 </div>
             ))}
-            <Link to={`/`}>
+            <Link to={`/newcampus`}>
                 <button>Add New Campus</button>
             </Link>
 

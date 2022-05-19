@@ -1,48 +1,98 @@
+/*==================================================
+NewStudentContainer.js
+The Container component is responsible for stateful logic and data fetching, and
+passes data (if any) as props to the corresponding View component.
+If needed, it also defines the component's "connect" function.
+================================================== */
 import Header from './Header';
-import NewStudentView from "../views/NewStudentView";
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { 
-    addStudentThunk,
-    fetchAllStudentsThunk,
-} from '../../store/thunks';
+import { Redirect } from 'react-router-dom';
+
+import NewStudentView from '../views/NewStudentView';
+import { addStudentThunk } from '../../store/thunks';
 
 class NewStudentContainer extends Component {
-    // Get all students data from back-end database
-    componentDidMount() {
-        console.log(this.props)
-        this.props.fetchAllStudents();
+  // Initialize state
+  constructor(props){
+    super(props);
+    this.state = {
+      firstname: "", 
+      lastname: "", 
+      campusId: null, 
+      redirect: false, 
+      redirectId: null
+    };
+  }
+
+  
+
+  // Capture input data when it is entered
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.firstname
+    });
+  }
+
+  // Take action after user clicks the submit button
+  handleSubmit = async event => {
+    event.preventDefault();  // Prevent browser reload/refresh after submit.
+
+    let student = {
+        id: this.state.id,
+        firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        campusId: this.state.campusId
+    };
+    
+    // Add new student in back-end database
+    let newStudent = await this.props.addStudent(student);
+
+    // Update state, and trigger redirect to show the new student
+    this.setState({
+      firstname: "", 
+      lastname: "", 
+      campusId: null, 
+      redirect: true, 
+      redirectId: newStudent.id
+    });
+  }
+
+  // Unmount when the component is being removed from the DOM:
+  componentWillUnmount() {
+      this.setState({redirect: false, redirectId: null});
+  }
+
+  // Render new student input form
+  render() {
+    // Redirect to new student's page after submit
+    if(this.state.redirect) {
+      return (<Redirect to={`/students/`}/>)
     }
 
-    render() {
-        return (
-            <div>
-                <Header />
-                <NewStudentView 
-                    students={this.props.allStudents}
-                    addStudent={this.props.addStudent}
-                />
-            </div>
-        )
-    }
+    // Display the input form via the corresponding View component
+    return (
+      <div>
+        <Header />
+        <NewStudentView 
+          handleChange={this.handleChange} 
+          handleSubmit={this.handleSubmit}      
+        />
+      </div>          
+    );
+  }
 }
 
-// The following 2 input arguments are passed to the "connect" function used by "AllStudentsContainer" component to connect to Redux Store.
-// 1. The "mapState" argument specifies the data from Redux Store that the component needs.
-// The "mapState" is called when the Store State changes, and it returns a data object of "allStudents".
-const mapState = (state) => {
-    return {
-        allStudents: state.allStudents,  // Get the State object from Reducer "allStudents"
-        student: state.student,
-    };
-};
-    // 2. The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
-    // The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
+// The following input argument is passed to the "connect" function used by "NewStudentContainer" component to connect to Redux Store.
+// The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
+// The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
 const mapDispatch = (dispatch) => {
-    return {
-        fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
+    return({
         addStudent: (student) => dispatch(addStudentThunk(student)),
-    };
-};
+    })
+}
 
-export default connect(mapState, mapDispatch)(NewStudentContainer);
+// Export store-connected container by default
+// NewStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store 
+// (and re-read the values when the Store State updates).
+export default connect(null, mapDispatch)(NewStudentContainer);
