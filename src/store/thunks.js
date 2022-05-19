@@ -5,6 +5,7 @@ It contains all Thunk Creators and Thunks.
 import * as ac from './actions/actionCreators';  // Import Action Creators ("ac" keyword Action Creator)
 const axios = require('axios');
 
+/*****************************START OF CAMPUS THUNKS********************************/
 //All Campuses
 // THUNK CREATOR:
 export const fetchAllCampusesThunk = () => async (dispatch) => {  // The THUNK
@@ -45,6 +46,23 @@ export const addCampusThunk = (campus) => async (dispatch) => {  // The THUNK
     console.error(err);
   }
 };
+
+// Delete Campus
+// THUNK CREATOR:
+export const deleteCampusThunk = campusId => async dispatch => {  // The THUNK
+  try {
+    // API "delete" call to delete student (based on "studentID") from database
+    await axios.delete(`http://localhost:5000/campuses/${campusId}`);  
+    // Delete successful so change state with dispatch
+    dispatch(ac.deleteCampus(campusId));
+  } catch(err) {
+    console.error(err);
+  }
+};
+
+/*****************************END OF CAMPUS THUNKS********************************/
+
+/*****************************START OF STUDENT THUNKS********************************/
 
 // All Students
 // THUNK CREATOR:

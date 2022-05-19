@@ -12,7 +12,7 @@ const SingleStudentView = (props) => {
     return (
       <div>
         <h1>{student.firstname + " " + student.lastname}</h1>
-        <Link to={`/campuses/${student.id}`}>
+        <Link to={`/campuses/${student.campus.id}`}>
           <h3>{student.campus.name}</h3>
         </Link>
       </div>

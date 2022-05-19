@@ -4,16 +4,24 @@ import { Link } from "react-router-dom";
 import "../../css/AllCampusesView.css";
 
 function AllCampusesView(props) {
+    const { allCampuses, deleteCampus } = props;
     // If there is no campus, display a message.
     if(!props.allCampuses.length) {
-        return <h1>There are no campuses</h1>
+        return (
+            <div>
+                <p>There are no campuses</p>
+                <Link to={`newCampus`}>
+                    <button>Add New Campus</button>
+                </Link>
+            </div>
+        )
     }
 
     // If there is at least one campus, render All Campuses view
     return (
         <div>
             <h1>All Campuses</h1>
-            {props.allCampuses.map((campus) => (
+            {allCampuses.map((campus) => (
                 <div className="list-container" key={campus.id}>
                     <Link to={`/campuses/${campus.id}`}>
                         <h2>{campus.name}</h2>
@@ -22,11 +30,15 @@ function AllCampusesView(props) {
                     <h4>campus id: {campus.id}</h4>
                     <p>{campus.address}</p>
                     <p>{campus.description}</p>
+                    <br></br>
+                    <button onClick={() => deleteCampus(campus.id)}>Delete Campus</button>
                 </div>
             ))}
+            <br></br>
             <Link to={`/newcampus`}>
                 <button>Add New Campus</button>
             </Link>
+            
 
         </div>
     )
