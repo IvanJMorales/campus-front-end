@@ -16,12 +16,13 @@ const SingleCampusView = (props) => {
         <h1>{campus.name}</h1>
         <p>{campus.address}</p>
         <p>{campus.description}</p>
+        <h3>Enrolled Students</h3>
         {campus.students.map( student => {
           let name = student.firstname + " " + student.lastname;
           return (
             <div key={student.id}>
               <Link to={`/students/${student.id}`}>
-                <h2>{name}</h2>
+                <h4>{name}</h4>
               </Link>             
             </div>
           );
@@ -36,6 +37,7 @@ const SingleCampusView = (props) => {
           <h1>{campus.name}</h1>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
+          <h3>Enrolled Students</h3>
           <p>There are no students enrolled at this campus</p>
           <button onClick={() => deleteCampus(campus.id)}>Delete</button>
         </div>

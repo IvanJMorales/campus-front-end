@@ -8,6 +8,8 @@ import SingleCampusContainer from './components/containers/SingleCampusContainer
 import SingleStudentContainer from './components/containers/SingleStudentContainer';
 import NewCampusContainer from './components/containers/NewCampusContainer';
 import NewStudentContainer from './components/containers/NewStudentContainer';
+import EditCampusContainer from './components/containers/EditCampusContainer';
+
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route exact path="/students/:id" component={SingleStudentContainer} />
         <Route exact path="/newcampus" component={NewCampusContainer} />
         <Route exact path="/newstudent" component={NewStudentContainer} />
+        <Route exact path="/editcampus" component={EditCampusContainer} />
+
       </Switch>        
     </div>
   );

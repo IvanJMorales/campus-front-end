@@ -24,7 +24,7 @@ export const fetchAllCampusesThunk = () => async (dispatch) => {  // The THUNK
 // THUNK CREATOR:
 export const fetchCampusThunk = (id) => async (dispatch) => {  // The THUNK
   try {
-    // API "get" call to get a student data (based on "id")from database
+    // API "get" call to get a campus data (based on "id")from database
     let res = await axios.get(`http://localhost:5000/campuses/${id}`);
     dispatch(ac.fetchCampus(res.data));
   } catch(err) {
@@ -51,7 +51,7 @@ export const addCampusThunk = (campus) => async (dispatch) => {  // The THUNK
 // THUNK CREATOR:
 export const deleteCampusThunk = campusId => async dispatch => {  // The THUNK
   try {
-    // API "delete" call to delete student (based on "studentID") from database
+    // API "delete" call to delete campus (based on "campusID") from database
     await axios.delete(`http://localhost:5000/campuses/${campusId}`);  
     // Delete successful so change state with dispatch
     dispatch(ac.deleteCampus(campusId));
@@ -60,6 +60,18 @@ export const deleteCampusThunk = campusId => async dispatch => {  // The THUNK
   }
 };
 
+// Edit Campus
+// THUNK CREATOR:
+export const editCampusThunk = campus => async dispatch => {  // The THUNK
+  try {
+    // API "put" call to update student (based on "id" and "campus" object's data) from database
+    let updatedCampus = await axios.put(`http://localhost:5000/campuses/${campus.id}`, campus); 
+    // Update successful so change state with dispatch
+    dispatch(ac.editCampus(updatedCampus));
+  } catch(err) {
+    console.error(err);
+  }
+};
 /*****************************END OF CAMPUS THUNKS********************************/
 
 /*****************************START OF STUDENT THUNKS********************************/

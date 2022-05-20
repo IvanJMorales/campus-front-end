@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
   formContainer:{  
@@ -34,20 +33,20 @@ const useStyles = makeStyles( () => ({
   },
 }));
 
-const NewCampusView = (props) => {
+const EditCampusView = (props) => {
     const {handleChange, handleSubmit } = props;
     const classes = useStyles();
 
   // Render a New campus view with an input form
   return (
     <div>
-      <h1>New Campus</h1>
+      <h1>Edit Campus</h1>
 
       <div className={classes.root}>
         <div className={classes.formContainer}>
           <div className={classes.formTitle}>
             <Typography style={{fontWeight: 'bold', fontFamily: 'Courier, sans-serif', fontSize: '20px', color: '#11153e'}}>
-              Add a Campus
+              Edit Campus
             </Typography>
           </div>
           <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
@@ -78,4 +77,4 @@ const NewCampusView = (props) => {
   )
 }
 
-export default NewCampusView;
+export default EditCampusView;

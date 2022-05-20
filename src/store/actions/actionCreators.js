@@ -4,6 +4,8 @@ import * as at from './actionTypes';
  * for each action type
  */
 
+/*****************************START OF CAMPUS ACTION CREATOR********************************/
+
 // All Campuses
 export const fetchAllCampuses = (campuses) => {
   return {
@@ -28,13 +30,26 @@ export const addCampus = (campus) => {
   };
 };
 
-// Delete Student
+// Delete Campus
 export const deleteCampus = (campusId) => {
   return {
     type: at.DELETE_CAMPUS,
     payload: campusId,
   };
 };
+
+// Edit Campus
+export const editCampus = (campus) => {
+  return {
+    type: at.EDIT_CAMPUS,
+    payload: campus,
+  };
+};
+
+
+/*****************************END OF CAMPUS ACTION CREATOR********************************/
+
+/*****************************START OF STUDENT ACTION CREATOR********************************/
 
 // All Students
 export const fetchAllStudents = (students) => {
@@ -76,3 +91,5 @@ export const editStudent = (student) => {
     payload: student,
   };
 };
+
+/*****************************END OF STUDENT ACTION CREATOR********************************/

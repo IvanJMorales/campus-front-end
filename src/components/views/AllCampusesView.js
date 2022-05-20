@@ -31,6 +31,9 @@ function AllCampusesView(props) {
                     <p>{campus.address}</p>
                     <p>{campus.description}</p>
                     <br></br>
+                    <Link to={`editcampus`}>
+                        <button>Edit Campus</button>
+                    </Link>
                     <button onClick={() => deleteCampus(campus.id)}>Delete Campus</button>
                 </div>
             ))}
